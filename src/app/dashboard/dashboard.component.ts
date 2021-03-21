@@ -9,42 +9,39 @@ import { UserService } from '../shared/services/user.service';
 })
 export class DashboardComponent implements OnInit {
 
-  randomUsersForm : FormGroup;
+  randomUsersForm: FormGroup;
   showUsers = false;
 
   constructor(
-    private formB : FormBuilder,
+    private formB: FormBuilder,
     private userS: UserService
   ) { }
 
   ngOnInit() {
-    this.createRandomUsersForm();
-  }
-
-  createRandomUsersForm(){
-    if(this.userS.getSeed() !== undefined){
-      this.randomUsersForm = this.formB.group({
-        results: new FormControl(this.userS.getResults(),[Validators.max(5000),Validators.min(1)]),
-        seed: new FormControl(this.userS.getSeed())
-      });
+    if (this.userS.getSeed() !== undefined) {
+      this.createRandomUsersForm(this.userS.getResults(), this.userS.getSeed());
       this.showUsers = true;
-    }else {
-      this.randomUsersForm = this.formB.group({
-        results: new FormControl(1,[Validators.max(5000),Validators.min(1)]),
-        seed: new FormControl("seedRandom")
-      });
+    } else {
+      this.createRandomUsersForm(1, "seedRandom");
     }
-  
+  }
+
+  createRandomUsersForm(initResults: number, initSeed: string) {
+    this.randomUsersForm = this.formB.group({
+      results: new FormControl(initResults, [Validators.max(5000), Validators.min(1)]),
+      seed: new FormControl(initSeed)
+    });
+
   }
 
 
 
-  generate(){
+  generate() {
     this.randomUsersForm.markAllAsTouched();
-    if(this.randomUsersForm.valid){
+    if (this.randomUsersForm.valid) {
       this.userS.setSeed(this.randomUsersForm.value.seed);
       this.userS.setResults(this.randomUsersForm.value.results);
-      if(this.showUsers){
+      if (this.showUsers) {
         this.userS.reloadData();
       }
       this.showUsers = true;
