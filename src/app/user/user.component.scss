@@ -1,0 +1,22 @@
+.card-container{
+    padding: 24px;
+    position: relative;
+
+    .card-image {
+        border-radius: 50%;
+        width: 200px;
+        height: 200px;
+        box-shadow: 0 8px 6px -6px black;
+    }
+
+    .card-back-button{
+        position: absolute;
+    }
+    .contact-cell{
+        margin-bottom: 8px;
+    }
+}
+
+.card-box-margin-top {
+    margin-top: 24px;
+}

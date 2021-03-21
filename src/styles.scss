@@ -1,1 +1,59 @@
+@import '@angular/material/prebuilt-themes/deeppurple-amber.css';
+
 /* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+.container {
+    margin-left: auto;
+    margin-right: auto;
+}
+
+@media (min-width:768px) {
+    .container {
+            width: 750px;
+    }
+}
+
+@media (min-width:992px) {
+    .container {
+            width: 970px;
+    }
+}
+
+@media (min-width:1200px) {
+    .container {
+            width: 1170px;
+    }
+}
+
+.mat-table {
+    width: 100% !important;
+}
+
+#users-table{
+    .mat-column-phone, .mat-column-toDetail{
+        width: 15% !important;
+    }
+
+    .mat-column-email{
+        width: 20% !important;
+    }
+
+    .mat-column-gender {
+        width: 10%;
+    }
+
+    .mat-column-toDetail {
+        text-align: right;
+    }
+
+    .mat-column-name {
+        width: 40% !important;
+    }
+}
+
+.mat-card-header-text{
+    margin: 0 !important;
+}

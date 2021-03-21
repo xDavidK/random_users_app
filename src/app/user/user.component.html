@@ -1,0 +1,48 @@
+<div *ngIf="user" class="card-container" fxLayout="row">
+  <button class="card-back-button" (click)="toDashboard()" mat-button>
+    <mat-icon>keyboard_arrow_left</mat-icon>
+    <span>TO DASHBOARD</span>
+  </button>
+  <div fxFlex="30" fxLayout="column" fxLayoutGap="20px" fxLayoutAlign="center center">
+    <h1>{{user.name.first}} {{user.name.last}} ({{user.dob.age}})</h1>
+    <img class="card-image" [src]="user.picture.large">
+    <div fxLayout="row" fxLayoutAlign="center center" fxLayoutGap="8px">
+      <mat-icon>{{ user.gender === "female" ? 'female' : 'male'}}</mat-icon>
+    </div>
+  </div>
+
+  <div fxFlex>
+    <mat-card>
+      <mat-card-header>
+        <mat-card-title> Contacts</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div class="contact-cell" *ngFor="let contact of contacts" fxLayout="row" fxLayoutAlign="start center"
+          fxLayoutGap="8px">
+          <mat-icon>{{contact.icon}}</mat-icon> <span>{{contact.contact}}</span>
+        </div>
+      </mat-card-content>
+    </mat-card>
+    <mat-card class="card-box-margin-top">
+      <mat-card-header>
+        <mat-card-title> Location</mat-card-title>
+      </mat-card-header>
+      <mat-card-content>
+        <div fxLayout="row">
+          <app-info-block headerText="Street Name" [text]="user.location.street.name"></app-info-block>
+          <app-info-block headerText="Street Number" [text]="user.location.street.number"></app-info-block>
+        </div>
+        <div fxLayout="row">
+          <app-info-block headerText="City" [text]="user.location.city"></app-info-block>
+          <app-info-block headerText="State" [text]="user.location.state"></app-info-block>
+          <app-info-block headerText="Postcode" [text]="user.location.postcode"></app-info-block>
+        </div>
+        <div fxLayout="row">
+          <app-info-block headerText="Timezone"
+            [text]="user.location.timezone.description + ' ' +  user.location.timezone.offset"></app-info-block>
+        </div>
+      </mat-card-content>
+    </mat-card>
+  </div>
+
+</div>
